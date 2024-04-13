@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background: black;
+  position: relative;
+}
+
+.box {
+  width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.item_box {
+  cursor: url("../img/tools_hammer_icon_156946.png"), auto;
+  width: 80px;
+  height: 80px;
+  border: 2px solid gray;
+}
+
+.goblin {
+  width: 70px;
+  height: 70px;
+}
+
+.win_current {
+  color: green;
+  font-size: 100px;
+  margin-right: 10px;
+}
+
+.false_current {
+  font-size: 100px;
+  margin-left: 10px;
+  color: red;
+}
