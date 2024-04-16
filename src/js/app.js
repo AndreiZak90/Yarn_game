@@ -32,6 +32,11 @@ export default class Game {
         currNumb = randNumb;
         this.field[currNumb].insertAdjacentHTML("beforeend", goblin);
       }
+      this.miss.textContent++;
+      if (this.miss.textContent >= "5") {
+        this.miss.innerHTML = "Game Ower!!!";
+        this.clear();
+      }
     }, 1000);
   }
 
@@ -39,17 +44,10 @@ export default class Game {
     this.box.addEventListener("click", (e) => {
       const goblinFinder = this.box.querySelector(".goblin");
       if (e.target === goblinFinder) {
+        this.miss.textContent--;
         this.click.textContent++;
-
         if (this.click.textContent >= "5") {
           this.click.innerHTML = "Your WIN!!!";
-          this.clear();
-        }
-      } else {
-        this.miss.textContent++;
-
-        if (this.miss.textContent >= "5") {
-          this.miss.innerHTML = "Game Ower!!!";
           this.clear();
         }
       }
