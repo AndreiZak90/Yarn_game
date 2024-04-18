@@ -8,6 +8,8 @@ export default class Game {
     this.click = document.querySelector(".win_current");
 
     this.goblinPNG = goblinPNG;
+    this.onPage = -1;
+    this.onClick = 0;
   }
 
   playGame() {
@@ -17,9 +19,11 @@ export default class Game {
 
   intervalFunc() {
     let currNumb = 0;
+
     const goblin = `<img src='${goblinPNG}' class="goblin" alt="goblin"></img>`;
     this.intervalId = setInterval(() => {
       let randNumb = Math.floor(Math.random() * this.field.length);
+
       this.field[currNumb].innerHTML = "";
 
       if (currNumb !== randNumb) {
@@ -32,9 +36,10 @@ export default class Game {
         currNumb = randNumb;
         this.field[currNumb].insertAdjacentHTML("beforeend", goblin);
       }
-      this.miss.textContent++;
+      this.onPage++;
+      this.miss.textContent = this.onPage - this.click.textContent;
       if (this.miss.textContent >= "5") {
-        this.miss.innerHTML = "Game Ower!!!";
+        this.miss.innerHTML = "Game OWER!!!";
         this.clear();
       }
     }, 1000);
@@ -44,12 +49,14 @@ export default class Game {
     this.box.addEventListener("click", (e) => {
       const goblinFinder = this.box.querySelector(".goblin");
       if (e.target === goblinFinder) {
-        this.miss.textContent--;
-        this.click.textContent++;
-        if (this.click.textContent >= "5") {
-          this.click.innerHTML = "Your WIN!!!";
-          this.clear();
-        }
+        this.onClick++;
+        this.click.textContent = this.onClick;
+      } else {
+        this.miss.textContent++;
+      }
+      if (this.click.textContent >= "5") {
+        this.click.innerHTML = "Your WIN!!!";
+        this.clear();
       }
     });
   }
